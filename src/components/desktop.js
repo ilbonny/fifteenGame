@@ -38,6 +38,8 @@ export default class Desktop extends Component {
     this.move(third, value, second, fourth);
     this.move(fourth, value, third, []);
 
+    var count = this.state.handsPlayed +1;
+    this.setState({ handsPlayed: count });
     console.log(this.state.boxes);
   };
 
@@ -107,7 +109,7 @@ export default class Desktop extends Component {
     return (
       <div>
         <div id="title">Fifteen Game</div>
-        <div id="handPlayed">{this.state.handsPlayed}</div>
+        <div id="handPlayed">Hand Game : {this.state.handsPlayed}</div>
         <table id="desktop">
           <tbody>
             <tr className="row">{this.createRow(0, 4)}</tr>
