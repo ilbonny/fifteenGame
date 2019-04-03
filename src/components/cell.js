@@ -7,8 +7,8 @@ export default class Cell extends Component {
   }
 
   render() {
-    return (
-      <th className="cell" onClick={this.clickCell} >{this.props.value}</th>      
-    )
+    const value = this.props.value
+    return value === 0 ? (<th/>) :(<th className="cell" onClick={this.clickCell} >{value}</th>)      
+    
   }
 }
