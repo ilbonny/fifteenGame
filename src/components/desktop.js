@@ -3,14 +3,17 @@ import Cell from "./cell";
 
 export default class Desktop extends Component {
   state = {
+    boxesWin : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
     boxes: [],
-    handsPlayed : 0
+    handsPlayed : 0,
+    isWin : false
   };
 
   componentDidMount() {
-    const boxes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    const boxes = this.state.boxesWin;
     boxes.sort(() => Math.random() - 0.5);
     boxes.push(0);
+    
     this.setState({ boxes: boxes });
     console.log(boxes);
   }
@@ -27,7 +30,6 @@ export default class Desktop extends Component {
   };
 
   clickCell = value => {
-    
     const first = this.state.boxes.slice(0, 4);
     const second = this.state.boxes.slice(4, 8);
     const third = this.state.boxes.slice(8, 12);
@@ -40,7 +42,12 @@ export default class Desktop extends Component {
 
     var count = this.state.handsPlayed +1;
     this.setState({ handsPlayed: count });
+
     console.log(this.state.boxes);
+    console.log(this.state.boxes.slice(0,15));
+
+    if(JSON.stringify(this.state.boxes.slice(-1,1)) === JSON.stringify(this.state.boxesWin))
+        this.setState({ isWin: true });        
   };
 
   move = (row, value, rowUp, rowDown) => {
@@ -104,9 +111,9 @@ export default class Desktop extends Component {
     input[index_A] = input[index_B];
     input[index_B] = temp;
   };
-  
 
   render() {
+    const tagWin = this.state.isWin ? <div id="winGame">WINNER !!</div> : <div/>
     return (
       <div>
         <div id="title">Fifteen Game</div>
@@ -119,6 +126,7 @@ export default class Desktop extends Component {
             <tr className="row">{this.createRow(12, 16)}</tr>
           </tbody>
         </table>
+        {tagWin}
       </div>
     );
   }

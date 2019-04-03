@@ -36,3 +36,11 @@ body {
   font-size : 30px;
   text-align: center;
 }
+
+#winGame{
+  margin-top:10px; 
+  font-family: 'Courier New', Courier, monospace;
+  font-size : 30px;
+  text-align: center;
+  color: red;
+}
