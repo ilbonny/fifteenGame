@@ -104,6 +104,7 @@ export default class Desktop extends Component {
     input[index_A] = input[index_B];
     input[index_B] = temp;
   };
+  
 
   render() {
     return (
