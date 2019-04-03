@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Cell from "./cell";
 
 export default class Desktop extends Component {
+
   state = {
     boxesWin : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
     boxes: [],
@@ -10,7 +11,7 @@ export default class Desktop extends Component {
   };
 
   componentDidMount() {
-    const boxes = this.state.boxesWin;
+    const boxes = [...this.state.boxesWin];
     boxes.sort(() => Math.random() - 0.5);
     boxes.push(0);
     
@@ -43,10 +44,10 @@ export default class Desktop extends Component {
     var count = this.state.handsPlayed +1;
     this.setState({ handsPlayed: count });
 
-    console.log(this.state.boxes);
-    console.log(this.state.boxes.slice(0,15));
+    console.log(JSON.stringify(this.state.boxes.slice(0,15)));
+    console.log(JSON.stringify(this.state.boxesWin));
 
-    if(JSON.stringify(this.state.boxes.slice(-1,1)) === JSON.stringify(this.state.boxesWin))
+    if(JSON.stringify(this.state.boxes.slice(0,15)) === JSON.stringify(this.state.boxesWin))
         this.setState({ isWin: true });        
   };
 
